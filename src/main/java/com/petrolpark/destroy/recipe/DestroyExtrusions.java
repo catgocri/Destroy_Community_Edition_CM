@@ -21,5 +21,6 @@ public class DestroyExtrusions {
         BlockExtrusion.register(DestroyBlocks.MOLTEN_BOROSILICATE_GLASS.get(), (state, direction) -> DestroyBlocks.BOROSILICATE_GLASS_FIBER.getDefaultState().setValue(BlockStateProperties.AXIS, direction.getAxis()).setValue(FastCoolingMoltenPillarBlock.MOLTEN, true));
         BlockExtrusion.register(DestroyBlocks.MASHED_POTATO_BLOCK.get(), (state, direction) -> DestroyBlocks.RAW_FRIES_BLOCK.getDefaultState().setValue(BlockStateProperties.AXIS, direction.getAxis()));
         BlockExtrusion.register(Blocks.CLAY, (state, direction) -> DestroyBlocks.CLAY_MONOLITH.getDefaultState().setValue(RotatedPillarBlock.AXIS, direction.getAxis()));
+        BlockExtrusion.register(DestroyBlocks.PORKCHOP_BLOCK.get(), (state, direction) -> DestroyBlocks.BACON_BLOCK.getDefaultState().setValue(BlockStateProperties.AXIS, direction.getAxis()));
     };
 };

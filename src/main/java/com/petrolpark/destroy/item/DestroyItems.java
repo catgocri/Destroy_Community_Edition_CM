@@ -20,6 +20,7 @@ import com.simibubi.create.AllTags.AllItemTags;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.CombustibleItem;
+import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.sounds.SoundEvents;
@@ -303,6 +304,9 @@ public class DestroyItems {
 
     // TOOLS AND ARMOR
 
+    public static final ItemEntry<SoapItem> SOAP = REGISTRATE.item("soap", SoapItem::new)
+        .register();
+
     public static final ItemEntry<SwissArmyKnifeItem>
 
     SWISS_ARMY_KNIFE = REGISTRATE.item("swiss_army_knife", (p) -> new SwissArmyKnifeItem(5f, -1f, Tiers.DIAMOND, p))    
@@ -457,7 +461,15 @@ public class DestroyItems {
             .food(DestroyFoods.MASHED_POTATO)
         ).register(),
     EMPTY_CARTON = REGISTRATE.item("empty_carton", Item::new)
-        .register();
+         .register(),
+    RAW_BACON = REGISTRATE.item("raw_bacon", Item::new)
+            .properties(p -> p
+            .food(DestroyFoods.RAW_BACON)
+            ).register(),
+    COOKED_BACON = REGISTRATE.item("cooked_bacon", Item::new)
+            .properties(p -> p
+            .food(DestroyFoods.COOKED_BACON)
+            ).register();
 
     public static final ItemEntry<ChewingGumItem>
 
@@ -707,6 +719,8 @@ public class DestroyItems {
         .tag(DestroyItemTags.FERTILIZERS.tag, DestroyItemTags.YEAST.tag)
         .register(),
     NANODIAMONDS = REGISTRATE.item("nanodiamonds", Item::new)
+        .register(),
+    ANIMAL_FAT = REGISTRATE.item("animal_fat", Item::new)
         .register();
 
     public static final ItemEntry<CircuitMaskItem> CIRCUIT_MASK = REGISTRATE.item("circuit_mask", CircuitMaskItem::new)

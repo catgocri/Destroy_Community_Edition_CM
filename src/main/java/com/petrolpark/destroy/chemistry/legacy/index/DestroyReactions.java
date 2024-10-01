@@ -165,6 +165,15 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.ADIPIC_ACID)
         .build(),
 
+    CALCIUM_HYDROXIDE_SOAP_MAKING = builder()
+        .id("calcium_hydroxide_soap_making")
+        .addReactant(DestroyMolecules.CALCIUM_ION, 3)
+        .addReactant(DestroyMolecules.HYDROXIDE, 6)
+        .addSimpleItemReactant(DestroyItems.ANIMAL_FAT, 2f)
+        .addProduct(DestroyMolecules.GLYCEROL, 2)
+        .withResult(2f, PrecipitateReactionResult.of(DestroyItems.SOAP::asStack))
+        .build(),
+
     CARBIDE_HYDROLYSIS = builder()
         .id("carbide_hydrolysis")
         .addSimpleItemReactant(DestroyItems.CALCIUM_CARBIDE, 2f)
@@ -848,6 +857,15 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.SODIUM_ION)
         .addProduct(DestroyMolecules.HYDROXIDE)
         .addProduct(DestroyMolecules.HYDROGEN)
+        .build(),
+
+    SODIUM_HYDROXIDE_SOAP_MAKING = builder()
+        .id("sodium_hydroxide_soap_making")
+        .addReactant(DestroyMolecules.SODIUM_ION, 3)
+        .addReactant(DestroyMolecules.HYDROXIDE, 3)
+        .addSimpleItemReactant(DestroyItems.ANIMAL_FAT, 1f)
+        .addProduct(DestroyMolecules.GLYCEROL, 1)
+        .withResult(1f, PrecipitateReactionResult.of(DestroyItems.SOAP::asStack))
         .build(),
 
     SODIUM_OXIDE_DISSOLUTION = builder()

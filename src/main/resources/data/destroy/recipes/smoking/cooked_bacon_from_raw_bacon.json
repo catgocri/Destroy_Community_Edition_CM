@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:smoking",
+    "ingredient": {
+        "item": "destroy:raw_bacon"
+    },
+    "result": "destroy:cooked_bacon",
+    "cookingtime": 200
+}

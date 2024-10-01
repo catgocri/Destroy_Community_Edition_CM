@@ -516,7 +516,19 @@ public class DestroyBlocks {
         .tag(Tags.Items.STORAGE_BLOCKS)
         .build()
         .register(),
-    
+
+    PORKCHOP_BLOCK = REGISTRATE.block("porkchop_block", Block::new)
+            .initialProperties(() -> Blocks.CLAY)
+            .properties(p -> p
+                    .mapColor(MapColor.COLOR_PINK)
+                    .sound(SoundType.SLIME_BLOCK)
+                    .strength(0.2f)
+            ).tag(BlockTags.MINEABLE_WITH_AXE)
+            .tag(BlockTags.MINEABLE_WITH_HOE)
+            .item()
+            .build()
+            .register(),
+
     RHODIUM_BLOCK = REGISTRATE.block("rhodium_block", Block::new)
         .initialProperties(() -> Blocks.NETHERITE_BLOCK)
         .properties(p -> p
@@ -1088,7 +1100,21 @@ public class DestroyBlocks {
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .item()
         .build()
-        .register();
+        .register(),
+
+    BACON_BLOCK = REGISTRATE.block("bacon_block", RotatedPillarBlock::new)
+            .initialProperties(() -> Blocks.CLAY)
+            .properties(p -> p
+                    .mapColor(MapColor.COLOR_PINK)
+                    .sound(SoundType.SLIME_BLOCK)
+                    .strength(0.2f)
+            ).tag(BlockTags.MINEABLE_WITH_AXE)
+            .tag(BlockTags.MINEABLE_WITH_HOE)
+            .item()
+            .build()
+            .register();
+
+
 
     public static NonNullConsumer<? super BlockItem> registerPrimeableBombDispenserBehaviour() {
         return item -> DispenserBlock.registerBehavior(item, ((PrimeableBombBlock<?>)item.getBlock()).new PrimeableBombDispenseBehaviour());
