@@ -133,6 +133,7 @@ public class LegacyMixture extends ReadOnlyMixture {
         contents.forEach(tag -> {
             CompoundTag moleculeTag = (CompoundTag) tag;
             LegacySpecies molecule = LegacySpecies.getMolecule(moleculeTag.getString("Molecule"));
+            if (molecule == null) return;
             mixture.internalAddMolecule(molecule, moleculeTag.getFloat("Concentration"), false);
             if (moleculeTag.contains("Gaseous",Tag.TAG_FLOAT)) {
                 float state = moleculeTag.getFloat("Gaseous");
