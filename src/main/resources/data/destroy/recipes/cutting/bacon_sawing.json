@@ -1,0 +1,14 @@
+{
+    "type": "create:cutting",
+    "ingredients": [
+      {
+        "item": "minecraft:porkchop"
+      }
+    ],
+    "results": [
+      {
+        "item": "destroy:raw_bacon"
+      }
+    ],
+    "processingTime": 50
+  }

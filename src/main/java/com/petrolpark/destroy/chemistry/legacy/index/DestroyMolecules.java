@@ -1,11 +1,7 @@
 package com.petrolpark.destroy.chemistry.legacy.index;
 
 import com.petrolpark.destroy.Destroy;
-import com.petrolpark.destroy.chemistry.legacy.LegacyAtom;
-import com.petrolpark.destroy.chemistry.legacy.LegacyElement;
-import com.petrolpark.destroy.chemistry.legacy.LegacyMolecularStructure;
-import com.petrolpark.destroy.chemistry.legacy.LegacySpecies;
-import com.petrolpark.destroy.chemistry.legacy.LegacySpeciesTag;
+import com.petrolpark.destroy.chemistry.legacy.*;
 import com.petrolpark.destroy.chemistry.legacy.LegacyBond.BondType;
 import com.petrolpark.destroy.chemistry.legacy.LegacySpecies.MoleculeBuilder;
 
@@ -174,7 +170,18 @@ public final class DestroyMolecules {
         .tag(Tags.OZONE_DEPLETER)
         .tag(Tags.SMOG)
         .build(),
-    
+
+    BISULFITE = builder()
+        .id("bisulfite")
+        .structure(LegacyMolecularStructure.atom(LegacyElement.SULFUR, -1)
+            .addAtom(LegacyElement.OXYGEN)
+            .addAtom(LegacyElement.OXYGEN, BondType.DOUBLE)
+            .addGroup(LegacyMolecularStructure.atom(LegacyElement.OXYGEN)
+                .addAtom(LegacyElement.HYDROGEN))
+        )
+        .tag(Tags.ACID_RAIN)
+        .build(),
+
     BORIC_ACID = builder()
         .id("boric_acid")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:OB(O)O"))
@@ -257,7 +264,12 @@ public final class DestroyMolecules {
 
     CHLOROAURATE = builder()
         .id("chloroaurate")
-        .structure(LegacyMolecularStructure.deserialize("destroy:linear:ClAu^-1(Cl)(Cl)Cl"))
+        .structure(LegacyMolecularStructure.atom(LegacyElement.GOLD, -1)
+            .addAtom(LegacyElement.CHLORINE)
+            .addAtom(LegacyElement.CHLORINE)
+            .addAtom(LegacyElement.CHLORINE)
+            .addAtom(LegacyElement.CHLORINE)
+        )
         .color(0x7FEDCA4A)
         .build(),
 
@@ -1144,6 +1156,15 @@ public final class DestroyMolecules {
     SULFIDE = builder()
         .id("sulfide")
         .structure(LegacyMolecularStructure.atom(LegacyElement.SULFUR, -2))
+        .build(),
+
+    SULFITE = builder()
+        .id("sulfite")
+        .structure(LegacyMolecularStructure.atom(LegacyElement.SULFUR, -2)
+            .addAtom(LegacyElement.OXYGEN, BondType.DOUBLE)
+            .addAtom(LegacyElement.OXYGEN)
+            .addAtom(LegacyElement.OXYGEN)
+        )
         .build(),
 
     SULFUR_DIOXIDE = builder()

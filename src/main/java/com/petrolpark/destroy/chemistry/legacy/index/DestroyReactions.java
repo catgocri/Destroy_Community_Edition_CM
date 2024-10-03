@@ -486,6 +486,31 @@ public class DestroyReactions {
         .preexponentialFactor(1000f)
         .build(),
 
+    // TODO HARP change acids to ions
+    GOLD_ORE_DISSOLUTION = builder()
+        .id("gold_ore_dissolution")
+        .addSimpleItemReactant(AllItems.CRUSHED_GOLD::get, 1f)
+        .addReactant(DestroyMolecules.NITRIC_ACID)
+        .addReactant(DestroyMolecules.HYDROCHLORIC_ACID, 4, 1)
+        .addProduct(DestroyMolecules.CHLOROAURATE, 3)
+        .addProduct(DestroyMolecules.PROTON, 3)
+        .addProduct(DestroyMolecules.WATER, 3)
+        .addProduct(DestroyMolecules.NITROGEN_DIOXIDE, 3)
+        .build(),
+
+    GOLD_PRECIPITATION = builder()
+        .id("gold_precipitation")
+        .addReactant(DestroyMolecules.PROTON, 1, 1)
+        .addReactant(DestroyMolecules.CHLOROAURATE, 1, 1)
+        .addReactant(DestroyMolecules.SODIUM_ION, 3, 1)
+        .addReactant(DestroyMolecules.BISULFITE, 3, 1)
+        .addReactant(DestroyMolecules.WATER,3,1)
+        .addProduct(DestroyMolecules.HYDROCHLORIC_ACID,4)
+        .addProduct(DestroyMolecules.SODIUM_ION,3)
+        .addProduct(DestroyMolecules.HYDROGENSULFATE,3)
+        .withResult(0.125f, PrecipitateReactionResult.of(DestroyItems.GOLD_POWDER::asStack))
+        .build(),
+
     HABER_PROCESS = builder()
         .id("haber_process")
         .addReactant(DestroyMolecules.NITROGEN)
@@ -833,6 +858,15 @@ public class DestroyReactions {
         )
         .build(),
 
+    SODIUM_BISULFITE_SYNTHESIS = builder()
+        .id("sodium_bisulfite_synthesis")
+        .addReactant(DestroyMolecules.SULFUR_DIOXIDE,1,1)
+        .addReactant(DestroyMolecules.SODIUM_ION, 1, 1)
+        .addReactant(DestroyMolecules.HYDROXIDE, 1, 1)
+        .addProduct(DestroyMolecules.SODIUM_ION,1)
+        .addProduct(DestroyMolecules.BISULFITE,1) // Technically sodium metabisulfite is an intermediary here, but since this all happens in solution I skipped that step
+        .build(),
+
     SODIUM_DISSOLUTION = builder()
         .id("sodium_dissolution")
         .addReactant(DestroyMolecules.SODIUM_METAL, 2, 1)
@@ -1054,6 +1088,7 @@ public class DestroyReactions {
         builder().acid(DestroyMolecules.HYPOCHLOROUS_ACID, DestroyMolecules.HYPOCHLORITE, 7.53f);
         builder().acid(DestroyMolecules.NITRIC_ACID, DestroyMolecules.NITRATE, -1.3f);
         builder().acid(DestroyMolecules.SULFURIC_ACID, DestroyMolecules.HYDROGENSULFATE, -2.18f);
+        builder().acid(DestroyMolecules.BISULFITE, DestroyMolecules.SULFITE, 6.97f);
     };
 
     private static ReactionBuilder builder() {
