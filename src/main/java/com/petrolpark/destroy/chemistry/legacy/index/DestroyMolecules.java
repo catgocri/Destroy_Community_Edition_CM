@@ -548,6 +548,13 @@ public final class DestroyMolecules {
         .translationKey("alkene")
         .build(),
 
+    GENERIC_ALKOXIDE = builder()
+        .id("generic_alkoxide")
+        .structure(LegacyMolecularStructure.deserialize("destroy:linear:RC(R)(R)O^-1"))
+        .hypothetical()
+        .translationKey("alkoxide")
+        .build(),
+
     GENERIC_ALKYNE = builder()
         .id("generic_alkyne")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:RC#CR"))
@@ -779,7 +786,7 @@ public final class DestroyMolecules {
 
     ISOPRENE = builder()
         .id("isoprene")
-        .structure(LegacyMolecularStructure.deserialize("destroy:linear:C=C(C)CC=C"))
+        .structure(LegacyMolecularStructure.deserialize("destroy:linear:C=C(C)C=C"))
         .boilingPoint(34f)
         .density(681f)
         .molarHeatCapacity(102.69f)

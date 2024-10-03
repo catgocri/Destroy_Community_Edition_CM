@@ -121,8 +121,8 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
             .whenFluidUpdates(this::tryInsertFluidInVat)
             .forbidExtraction();
         behaviours.add(inputBehaviour);
-        fluidCapability = LazyOptional.empty(); // Temporarily set this to an empty optional
-        refreshFluidCapability();
+        //fluidCapability = LazyOptional.empty(); // Temporarily set this to an empty optional
+        //refreshFluidCapability(); // getController() is null so this doesn't work here
 
         redstoneMonitor = new RedstoneQuantityMonitorBehaviour(this);
         behaviours.add(redstoneMonitor);
@@ -237,12 +237,13 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
         displayType = DisplayType.values()[tag.getInt("DisplayType")];
         oldPower = tag.getFloat("OldHeatingPower");
         oldUV = tag.getFloat("OldUVPower");
-        if (tag.contains("InitializationTicks", Tag.TAG_INT)) initializationTicks = tag.getInt("InitializationTicks");
+        if (tag.contains("InitializationTicks", Tag.TAG_INT)) initializationTicks = tag.getInt("InitializationTicks"); else initializationTicks = 0;
         if (clientPacket) {
             spoutingTicks = tag.getInt("SpoutingTicks");
             spoutingFluid = FluidStack.loadFluidStackFromNBT(tag.getCompound("SpoutingFluid"));
             ventOpenness.chase(displayType == DisplayType.OPEN_VENT ? 1f : 0f, 0.3f, Chaser.EXP);
         };
+        redstoneMonitor.withLabel(getDisplayType().quantityLabel);
     };
 
     @Override
@@ -263,7 +264,8 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (side != direction) return LazyOptional.empty();
-        if (isFluidHandlerCap(cap) && (displayType == DisplayType.NORMAL || displayType == DisplayType.PIPE) && fluidCapability.isPresent()) {
+        if (isFluidHandlerCap(cap) && (displayType == DisplayType.NORMAL || displayType == DisplayType.PIPE)) {
+            refreshFluidCapability();
             return fluidCapability.cast();
         };
         if (isItemHandlerCap(cap)) {
@@ -355,28 +357,33 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
 
     public static final Optional<Function<VatControllerBlockEntity, Float>> pressureObserved = Optional.of(VatControllerBlockEntity::getPressure);
     public static final Optional<Function<VatControllerBlockEntity, Float>> temperatureObserved = Optional.of(VatControllerBlockEntity::getTemperature);
+    public static final Function<Float, Component> noQuantityLabel = f -> Component.empty();
+    public static final Function<Float, Component> temperatureQuantityLabel = f -> DestroyLang.translate("tooltip.vat.temperature", TemperatureUnit.KELVINS.of(f, df)).component();
+    public static final Function<Float, Component> pressureQuantityLabel = f -> DestroyLang.translate("tooltip.vat.pressure.absolute", df.format(f)).component();
 
     public static enum DisplayType {
 
-        NORMAL(true, true, false, false, false, Optional.empty()),
-        BAROMETER(false, true, false, true, false, pressureObserved),
-        BAROMETER_BLOCKED(false, true, false, true, false, pressureObserved),
-        THERMOMETER(false, true, false, false, true, temperatureObserved),
-        THERMOMETER_BLOCKED(false, true, false, false, true, temperatureObserved),
-        PIPE(true, true, false, false, false, Optional.empty()),
-        CLOSED_VENT(true, false, true, false, false, Optional.empty()),
-        OPEN_VENT(true, false, true, false, false, Optional.empty());
+        NORMAL(true, true, false, false, false, Optional.empty(), noQuantityLabel),
+        BAROMETER(false, true, false, true, false, pressureObserved, pressureQuantityLabel),
+        BAROMETER_BLOCKED(false, true, false, true, false, pressureObserved, pressureQuantityLabel),
+        THERMOMETER(false, true, false, false, true, temperatureObserved, temperatureQuantityLabel),
+        THERMOMETER_BLOCKED(false, true, false, false, true, temperatureObserved, temperatureQuantityLabel),
+        PIPE(true, true, false, false, false, Optional.empty(), noQuantityLabel),
+        CLOSED_VENT(true, false, true, false, false, Optional.empty(), noQuantityLabel),
+        OPEN_VENT(true, false, true, false, false, Optional.empty(), noQuantityLabel);
 
         public final boolean validForTop, validForSide, isVent, showsPressure, showsTemperature;
         public final Optional<Function<VatControllerBlockEntity, Float>> quantityObserved;
+        public final Function<Float, Component> quantityLabel;
 
-        private DisplayType(boolean validForTop, boolean validForSide, boolean isVent, boolean showsPressure, boolean showsTemperature, Optional<Function<VatControllerBlockEntity, Float>> quantityObserved) {
+        private DisplayType(boolean validForTop, boolean validForSide, boolean isVent, boolean showsPressure, boolean showsTemperature, Optional<Function<VatControllerBlockEntity, Float>> quantityObserved, Function<Float, Component> quantityLabel) {
             this.validForTop = validForTop;
             this.validForSide = validForSide;
             this.isVent = isVent;
             this.showsPressure = showsPressure;
             this.showsTemperature = showsTemperature;
             this.quantityObserved = quantityObserved;
+            this.quantityLabel = quantityLabel;
         };
 
         public boolean validForBottom() {
@@ -412,9 +419,11 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
 
         // If the observer has been switched, create new bounds
         redstoneMonitor.quantityObserved = displayType.quantityObserved.map(f -> {
-            if (getController() == null) return () -> 0f;
-            return () -> f.apply(getController());
+            VatControllerBlockEntity vc = getController();
+            if (vc == null) return () -> 0f;
+            return () -> f.apply(vc);
         });
+        redstoneMonitor.withLabel(displayType.quantityLabel);
         if (oldDisplayType.quantityObserved != this.displayType.quantityObserved) {
             if (this.displayType.showsPressure) {
                 redstoneMonitor.lowerThreshold = 0f;
@@ -508,7 +517,7 @@ public class VatSideBlockEntity extends CopycatBlockEntity implements IHaveLabGo
             if (DestroyAllConfigs.CLIENT.chemistry.nerdMode.get()) DestroyLang.translate("tooltip.vat.power", df.format(controller.heatingPower / 1000f)).forGoggles(tooltip);
         } else if (getDisplayType().showsPressure) {
             Vat vat = getVatOptional().get();
-            DestroyLang.translate("tooltip.vat.pressure.header", " ").style(ChatFormatting.WHITE).forGoggles(tooltip);
+            DestroyLang.translate("tooltip.vat.pressure.header").style(ChatFormatting.WHITE).forGoggles(tooltip);
             DestroyLang.translate("tooltip.vat.pressure.current", df.format(controller.getPressure() / 1000f)).style(ChatFormatting.GRAY).forGoggles(tooltip, 1);
             DestroyLang.translate("tooltip.vat.pressure.max", df.format(vat.getMaxPressure() / 1000f), vat.getWeakestBlock().getBlock().getName().getString()).style(ChatFormatting.GRAY).forGoggles(tooltip, 1);
         } else {

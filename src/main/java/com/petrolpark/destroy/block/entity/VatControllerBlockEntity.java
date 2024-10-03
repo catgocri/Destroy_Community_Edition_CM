@@ -193,7 +193,7 @@ public class VatControllerBlockEntity extends SmartBlockEntity implements IHaveL
             boolean shouldUpdateFluidMixture = false;
             Vat vat = getVatOptional().get();
             if (tankBehaviour.isEmpty()) return;
-            double fluidAmount = getCapacity() / Constants.MILLIBUCKETS_PER_LITER; // Converts getFluidAmount() in mB to Buckets
+            double fluidAmount = getCapacity() / Constants.MILLIBUCKETS_PER_LITER; // Converts getFluidAmount() in mB to liters
 
             int cyclesPerTick = getSimulationLevel();
 
@@ -628,7 +628,7 @@ public class VatControllerBlockEntity extends SmartBlockEntity implements IHaveL
     };
 
     /**
-     * Get the pressure above room pressure of the gas in this Vat.
+     * Get the pressure above room pressure of the gas in this Vat (in Pa).
      */
     @SuppressWarnings("null")
     public float getPressure() {
@@ -791,10 +791,10 @@ public class VatControllerBlockEntity extends SmartBlockEntity implements IHaveL
             if (vatControllerGetter.get() == null || vatControllerGetter.get().getGasTankContents().isEmpty()) return FluidStack.EMPTY;
             LegacyMixture mixture = LegacyMixture.readNBT(vatControllerGetter.get().getGasTankContents().getOrCreateChildTag("Mixture"));
             double scaleFactor = mixture.getTotalConcentration() / molarDensity;
-            FluidStack lostFluid = drainGasTank((int)(0.5d + scaleFactor * amount), action); // Round up
+            FluidStack lostFluid = drainGasTank((int)Math.ceil(scaleFactor * amount), action); // Round up
             mixture.scale((float)scaleFactor);
             double drainedAmount = (double)lostFluid.getAmount() / scaleFactor;
-            FluidStack stack = MixtureFluid.of((int)(drainedAmount + 0.5d), mixture);
+            FluidStack stack = MixtureFluid.of((int)Math.ceil(drainedAmount), mixture);
             return stack;
         };
 
