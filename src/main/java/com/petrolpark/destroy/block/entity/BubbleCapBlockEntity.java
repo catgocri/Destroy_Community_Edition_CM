@@ -302,7 +302,7 @@ public class BubbleCapBlockEntity extends SmartBlockEntity implements IHaveLabGo
     @SuppressWarnings("null")
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (side == pipeFace) {
+            if (side != null) { // Used to be: if (side == pipeFace), changed to allow multiple pipes to work with a single cap
                 return tank.getCapability().cast();
             } else if (side == null) { // For Polluting Behaviour, we need access to all Fluid Tanks
                 return allFluidCapability.cast();
