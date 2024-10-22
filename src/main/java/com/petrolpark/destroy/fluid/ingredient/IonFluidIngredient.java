@@ -27,7 +27,7 @@ public class IonFluidIngredient extends MoleculeFluidIngredient {
 
     @Override
     protected boolean testMixture(LegacyMixture mixture) {
-        return mixture.hasUsableMolecule(molecule, minConcentration, maxConcentration, m -> m.getCharge() != 0 && Math.signum(m.getCharge()) != Math.signum(molecule.getCharge()));
+        return mixture.hasUsableMolecule(molecule, minConcentration, maxConcentration, m -> (m.getCharge() != 0 && Math.signum(m.getCharge()) != Math.signum(molecule.getCharge())) || m.equals(DestroyMolecules.PROTON));
     };
 
     @Override

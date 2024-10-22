@@ -198,6 +198,8 @@ public class DestroyReactions {
         .addReactant(DestroyMolecules.CARBON_MONOXIDE, 2, 1)
         .addReactant(DestroyMolecules.OXYGEN)
         .addProduct(DestroyMolecules.CARBON_DIOXIDE, 2)
+        .preexponentialFactor(4.3e7f)
+        .activationEnergy(100f) // This preexponential factor and activation energy should yield decent oxidation at around 650K
         .build(),
 
     CARBON_TETRACHLORIDE_FLUORINATION = builder()
@@ -208,6 +210,14 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.TRICHLOROFLUOROMETHANE)
         .addProduct(DestroyMolecules.HYDROCHLORIC_ACID, 3)
         .build(), //TODO eventually replace with generic halogen substitution reaction
+
+    CARBON_TETRACHLORIDE_SYNTHESIS = builder()
+        .id("carbon_tetrachloride_synthesis") //
+        .addReactant(DestroyMolecules.METHANE, 1, 1)
+        .addReactant(DestroyMolecules.CHLORINE, 4, 1)
+        .addProduct(DestroyMolecules.CARBON_TETRACHLORIDE,1)
+        .addProduct(DestroyMolecules.HYDROCHLORIC_ACID,4)
+        .build(),
 
     CELLULOSE_NITRATION = builder()
         .id("cellulose_nitration")
@@ -248,6 +258,8 @@ public class DestroyReactions {
         .addReactant(DestroyMolecules.CHLORODIFLUOROMETHANE, 2)
         .addProduct(DestroyMolecules.HYDROCHLORIC_ACID, 2)
         .addProduct(DestroyMolecules.TETRAFLUOROETHENE)
+        .preexponentialFactor(1e8f)
+        .activationEnergy(100f) // This preexponential factor and activation energy should yield decent pyrolysis at around 600K
         .build(),
 
     CHLOROETHENE_POLYMERIZATION = builder()
@@ -476,7 +488,7 @@ public class DestroyReactions {
 
     GOLD_DISSOLUTION = builder()
         .id("gold_dissolution")
-        .addSimpleItemReactant(() -> Items.GOLDEN_CARROT, 10f)
+        .addSimpleItemReactant(() -> Items.GOLDEN_CARROT, 8f)
         .addReactant(DestroyMolecules.NITRATE, 3, 1)
         .addReactant(DestroyMolecules.CHLORIDE, 4, 1)
         .addReactant(DestroyMolecules.PROTON, 6, 2)
@@ -486,16 +498,16 @@ public class DestroyReactions {
         .preexponentialFactor(1000f)
         .build(),
 
-    // TODO HARP change acids to ions
     GOLD_ORE_DISSOLUTION = builder()
         .id("gold_ore_dissolution")
-        .addSimpleItemReactant(AllItems.CRUSHED_GOLD::get, 1f)
-        .addReactant(DestroyMolecules.NITRIC_ACID)
-        .addReactant(DestroyMolecules.HYDROCHLORIC_ACID, 4, 1)
-        .addProduct(DestroyMolecules.CHLOROAURATE, 3)
-        .addProduct(DestroyMolecules.PROTON, 3)
+        .addSimpleItemReactant(AllItems.CRUSHED_GOLD::get, 30f)
+        .addReactant(DestroyMolecules.NITRATE, 3, 1)
+        .addReactant(DestroyMolecules.CHLORIDE, 4, 1)
+        .addReactant(DestroyMolecules.PROTON, 6, 2)
+        .addProduct(DestroyMolecules.CHLOROAURATE)
         .addProduct(DestroyMolecules.WATER, 3)
         .addProduct(DestroyMolecules.NITROGEN_DIOXIDE, 3)
+        .preexponentialFactor(1000f)
         .build(),
 
     GOLD_PRECIPITATION = builder()
@@ -508,7 +520,7 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.HYDROCHLORIC_ACID,4)
         .addProduct(DestroyMolecules.SODIUM_ION,3)
         .addProduct(DestroyMolecules.HYDROGENSULFATE,3)
-        .withResult(0.125f, PrecipitateReactionResult.of(DestroyItems.GOLD_POWDER::asStack))
+        .withResult(10f, PrecipitateReactionResult.of(DestroyItems.GOLD_POWDER::asStack))
         .build(),
 
     HABER_PROCESS = builder()
@@ -537,7 +549,16 @@ public class DestroyReactions {
         .activationEnergy(100f)
         .enthalpyChange(-500f)
         .build(),
-    
+
+    HYDROGEN_CYANIDE_DISSOCIATION = builder()
+        .id("hydrogen_cyanide_dissociation")
+        .addReactant(DestroyMolecules.HYDROGEN_CYANIDE)
+        .addReactant(DestroyMolecules.HYDROXIDE)
+        .addCatalyst(DestroyMolecules.WATER, 1)
+        .addProduct(DestroyMolecules.WATER)
+        .addProduct(DestroyMolecules.CYANIDE)
+        .build(),
+
     HYDROGEN_IODIDE_SYNTHESIS = builder()
         .id("hydrogen_iodide_synthesis")
         .addReactant(DestroyMolecules.HYDRAZINE)
@@ -875,6 +896,7 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.HYDROXIDE, 2)
         .addProduct(DestroyMolecules.HYDROGEN)
         .activationEnergy(1f)
+        .enthalpyChange(-370f) // STRONGLY exothermic
         .build(),
 
     SODIUM_HYDRIDE_FORMATION = builder()
@@ -900,6 +922,17 @@ public class DestroyReactions {
         .addSimpleItemReactant(DestroyItems.ANIMAL_FAT, 1f)
         .addProduct(DestroyMolecules.GLYCEROL, 1)
         .withResult(1f, PrecipitateReactionResult.of(DestroyItems.SOAP::asStack))
+        .build(),
+
+    SODIUM_INGOT_DISSOLUTION = builder()
+        .id("sodium_ingot_dissolution")
+        .addReactant(DestroyMolecules.WATER, 2, 1)
+        .addSimpleItemReactant(DestroyItems.SODIUM_INGOT::get, 4.9f)
+        .addProduct(DestroyMolecules.SODIUM_ION, 2)
+        .addProduct(DestroyMolecules.HYDROXIDE, 2)
+        .addProduct(DestroyMolecules.HYDROGEN)
+        .activationEnergy(1f)
+        .enthalpyChange(-370f) // STRONGLY exothermic
         .build(),
 
     SODIUM_OXIDE_DISSOLUTION = builder()
@@ -989,7 +1022,6 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.SODIUM_ION, 4)
         .addProduct(DestroyMolecules.CHLORIDE, 4)
         .build(),
-
 
     TETRAFLUOROETHENE_POLYMERIZATION = builder()
         .id("tetrafluoroethene_polymerization")

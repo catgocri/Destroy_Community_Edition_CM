@@ -1,16 +1,16 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-      "BDB",
+      "BRB",
       "BFB",
-      "BDB"
+      "BRB"
     ],
     "key": {
       "B": {
         "tag": "forge:plates/brass"
       },
-      "D": {
-        "item": "destroy:nanodiamonds"
+      "R": {
+        "tag": "forge:rods/stainless_steel"
       },
       "F": {
         "item": "destroy:mesh"

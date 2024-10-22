@@ -49,6 +49,7 @@ public class DestroyCreativeModeTabs {
 				n(), d(Items.COPPER_INGOT), d(Blocks.COPPER_BLOCK), i(DestroyItems.COPPER_POWDER), d(AllItems.CRUSHED_COPPER), d(AllItems.COPPER_SHEET), d(Items.RAW_COPPER), d(Blocks.RAW_COPPER_BLOCK), d(Items.COPPER_ORE), d(Blocks.DEEPSLATE_COPPER_ORE), 
 				n(), i(DestroyItems.STAINLESS_STEEL_INGOT), r(DestroyBlocks.STAINLESS_STEEL_BLOCK), e(), e(), i(DestroyItems.STAINLESS_STEEL_SHEET), i(DestroyItems.STAINLESS_STEEL_ROD), i(DestroyBlocks.STAINLESS_STEEL_RODS), i(DestroyItems.MOLTEN_STAINLESS_STEEL_BUCKET),
 				n(), d(Items.IRON_INGOT), d(Blocks.IRON_BLOCK), i(DestroyItems.IRON_POWDER), d(AllItems.CRUSHED_IRON), d(AllItems.IRON_SHEET),d(Items.RAW_IRON), d(Blocks.RAW_IRON_BLOCK), d(Blocks.IRON_ORE), d(Blocks.DEEPSLATE_IRON_ORE),
+				n(), d(Items.GOLD_INGOT), d(Blocks.GOLD_BLOCK), i(DestroyItems.GOLD_POWDER), d(AllItems.CRUSHED_GOLD), d(AllItems.GOLDEN_SHEET),d(Items.RAW_GOLD), d(Blocks.RAW_GOLD_BLOCK), d(Blocks.GOLD_ORE),
 				n(), i(DestroyItems.LEAD_INGOT), i(DestroyBlocks.LEAD_BLOCK), i(DestroyItems.LEAD_POWDER), d(AllItems.CRUSHED_LEAD), e(), i(DestroyItems.NETHER_CROCOITE), e(), i(DestroyBlocks.NETHER_CROCOITE_BLOCK),
 				n(), i(DestroyItems.NICKEL_INGOT), i(DestroyBlocks.NICKEL_BLOCK), i(DestroyItems.NICKEL_POWDER), d(AllItems.CRUSHED_NICKEL), e(), i(DestroyItems.RAW_NICKEL), i(DestroyBlocks.RAW_NICKEL_BLOCK), d(DestroyBlocks.NICKEL_ORE), d(DestroyBlocks.DEEPSLATE_NICKEL_ORE),
 				n(), i(DestroyItems.PALLADIUM_INGOT), i(DestroyBlocks.PALLADIUM_BLOCK), i(DestroyItems.PALLADIUM_POWDER), i(DestroyItems.CRUSHED_RAW_PALLADIUM),
@@ -76,7 +77,7 @@ public class DestroyCreativeModeTabs {
 				s("food"),
 				i(DestroyItems.NAPALM_SUNDAE), i(DestroyItems.THERMITE_BROWNIE), i(DestroyItems.BOMB_BON), i(DestroyItems.EMPTY_BOMB_BON),
 				i(DestroyItems.BUTTER), i(DestroyItems.MASHED_POTATO), i(DestroyBlocks.MASHED_POTATO_BLOCK), i(DestroyItems.RAW_FRIES), i(DestroyBlocks.RAW_FRIES_BLOCK), i(DestroyItems.FRIES), i(DestroyItems.BANGERS_AND_MASH), i(DestroyItems.CHEWING_GUM), i(DestroyItems.EMPTY_CARTON), i(DestroyItems.APPLE_JUICE_CARTON), i(DestroyItems.MILK_CARTON),
-				c(DestroyItems.UNDISTILLED_MOONSHINE_BOTTLE, DestroySubstancesConfigs::alcoholEnabled), c(DestroyItems.MOONSHINE_BOTTLE, DestroySubstancesConfigs::alcoholEnabled), i(DestroyItems.CHORUS_WINE_BOTTLE),
+				c(DestroyItems.UNDISTILLED_MOONSHINE_BOTTLE, DestroySubstancesConfigs::alcoholEnabled), c(DestroyItems.MOONSHINE_BOTTLE, DestroySubstancesConfigs::alcoholEnabled), i(DestroyItems.CHORUS_WINE_BOTTLE), i(DestroyBlocks.PORKCHOP_BLOCK), i(DestroyBlocks.BACON_BLOCK), i(DestroyItems.RAW_BACON), i(DestroyItems.COOKED_BACON),
 				
 				s("beetroots"),
 				n(), i(DestroyItems.HEFTY_BEETROOT), i(DestroyItems.COAL_INFUSED_BEETROOT), i(DestroyItems.COPPER_INFUSED_BEETROOT), i(DestroyItems.DIAMOND_INFUSED_BEETROOT), i(DestroyItems.EMERALD_INFUSED_BEETROOT), i(DestroyItems.FLUORITE_INFUSED_BEETROOT), i(DestroyItems.GOLD_INFUSED_BEETROOT), i(DestroyItems.IRON_INFUSED_BEETROOT), i(DestroyItems.LAPIS_INFUSED_BEETROOT),
@@ -90,7 +91,7 @@ public class DestroyCreativeModeTabs {
 				i(DestroyBlocks.CHLORINE_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.CHROMIUM_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.IRON_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.NICKEL_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.COPPER_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.ZINC_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.RHODIUM_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.PALLADIUM_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.IODINE_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.PLATINUM_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.GOLD_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.MERCURY_PERIODIC_TABLE_BLOCK), i(DestroyBlocks.LEAD_PERIODIC_TABLE_BLOCK),
 				
 				s("misc"),
-				i(DestroyItems.BLANK_MUSIC_DISC), i(DestroyItems.MUSIC_DISC_SPECTRUM), i(DestroyItems.CIRCUIT_MASK), i(DestroyItems.RUINED_CIRCUIT_MASK), i(DestroyItems.CIRCUIT_BOARD), i(DestroyItems.RUINED_CIRCUIT_BOARD), i(DestroyItems.MESH), i(DestroyItems.GAS_FILTER), i(DestroyItems.SWISS_ARMY_KNIFE), i(DestroyItems.BUCKET_AND_SPADE), i(DestroyItems.VOLTAIC_PILE), i(DestroyItems.DISCHARGED_VOLTAIC_PILE), i(DestroyItems.PAPER_PULP), i(DestroyItems.TEAR_BOTTLE), i(DestroyItems.URINE_BOTTLE), i(DestroyItems.YEAST)
+				i(DestroyItems.BLANK_MUSIC_DISC), i(DestroyItems.MUSIC_DISC_SPECTRUM), i(DestroyItems.CIRCUIT_MASK), i(DestroyItems.RUINED_CIRCUIT_MASK), i(DestroyItems.CIRCUIT_BOARD), i(DestroyItems.RUINED_CIRCUIT_BOARD), i(DestroyItems.MESH), i(DestroyItems.GAS_FILTER), i(DestroyItems.SWISS_ARMY_KNIFE), i(DestroyItems.BUCKET_AND_SPADE), i(DestroyItems.VOLTAIC_PILE), i(DestroyItems.DISCHARGED_VOLTAIC_PILE), i(DestroyItems.PAPER_PULP), i(DestroyItems.TEAR_BOTTLE), i(DestroyItems.URINE_BOTTLE), i(DestroyItems.YEAST), i(DestroyItems.ANIMAL_FAT), i(DestroyItems.SOAP)
 			
 			).title(Component.translatable("itemGroup.destroy.base"))
 			.withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getId())
