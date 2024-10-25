@@ -7,11 +7,13 @@ assignees: ''
 
 ---
 
-**Before submitting a bug report, ensure you are familiar with the [rules](https://github.com/petrolpark/destroy/issues/1).** Do not include this line in the bug report.
+**This is a community-supported fork of Destroy.** Please only report issues specific to the community fork. Any issues affecting the base mod should be reported to the main mod repository.
+
+**To help us resolve any issues**, please try to do the following:
 
 **Describe the bug**
 
-A clear and concise description of what the bug is.
+A clear and concise description of what the bug is. If possible, include **relevant** lines from the console or crash log. Please try to read through logs rather than attaching the entire log file.
 
 **To Reproduce**
 
@@ -33,9 +35,7 @@ If applicable, add screenshots to help explain your problem.
 
 **System Information**
 
-You should only report issues on the latest update of Destroy, or on the latest snapshot (if it is for an unreleased update). For snapshots, it would be useful if you also checked if the bug exists in the latest full update. No other versions are supported. Include the following information:
-
- - Create version [e.g. 0.5.1h]
+ - Create version [e.g. 0.5.1.j]
  - Other mods and their versions [e.g. Create: TFMG 0.7.0, JEI 1.20.1]
 
 **Additional context**
@@ -43,7 +43,3 @@ You should only report issues on the latest update of Destroy, or on the latest 
 Add any other context about the problem here.
 For crashes, include the crash report and `debug.log`.
 For client disconnections, include both the server and client `debug.log`s.
-
-**Minecraft Username**
-
-If you are interested in the **Beta Tester** [Badge](https://patreon.com/petrolpark/about), include your Minecraft username here (case-sensitive).
