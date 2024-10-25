@@ -1,13 +1,7 @@
-# Destroy
+# Destroy Community Edition
 
-Destroy is a chemistry-themed add-on to the popular Create mod. Right now it's under development.
+Destroy Community Edition is a community-made add-on to the chemistry-centered Destroy mod. It contains bug fixes, balance changes, and some minor new additions intended to flesh out the mod and make it more stable and playable in Survival mode.
 
-Find out more on the [Discord](https://discord.gg/6EBJ3AzbHu) and [Modrinth](https://modrinth.com/mod/destroy/) page.
+You can find out more about the base mod and Community Edition on the [Discord](https://discord.gg/6EBJ3AzbHu) and [Modrinth](https://modrinth.com/mod/destroy/) page.
 
-Currently, 1.0 is in development. **This will still be a beta release**.
-
-# License
-
-All rights are reserved unless otherwise explicitly stated.
-
-
+The Community Edition is built on the latest release of Destroy, which is currently 0.1.0 Snapshot 10.
