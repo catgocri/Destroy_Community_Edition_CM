@@ -30,3 +30,4 @@ BUG FIXES
 - Sodium dissolution is now strongly exothermic
 - Fixed some tag issues that broke recipes involving primary or secondary explosives, such as bomb bons and fireworks
 - Having an open-vent Vat no longer causes the game to hang when you quit to menu
+- Fixed a bug which causes the game to crash when going through the End's exit portal
