@@ -988,7 +988,6 @@ public class DestroyCommonEvents {
         public static void onCreateAttributes(EntityAttributeModificationEvent event) {
             event.add(EntityType.PLAYER, DestroyAttributes.EXTRA_INVENTORY_SIZE.get());
             event.add(EntityType.PLAYER, DestroyAttributes.EXTRA_HOTBAR_SLOTS.get());
-            if(!event.has(EntityType.PLAYER, DestroyAttributes.EXTRA_INVENTORY_SIZE.get())) throw new IllegalStateException("");
         };
 
         /**
