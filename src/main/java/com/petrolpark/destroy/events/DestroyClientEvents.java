@@ -95,7 +95,7 @@ public class DestroyClientEvents {
             Minecraft mc = Minecraft.getInstance();
             float smog = (float)PollutionHelper.getPollution(mc.level, mc.player.blockPosition(), PollutionType.SMOG);
             Color existing = new Color(event.getRed(), event.getGreen(), event.getBlue(), 1f);
-            DestroyClient.FOG_HANDLER.setTargetColor(Color.mixColors(existing, BROWN, 0.8f * smog / (float)PollutionType.SMOG.max));
+            DestroyClient.FOG_HANDLER.setTargetColor(Color.mixColors(existing, BROWN, 0.8f * smog / (float)PollutionType.SMOG.max), AnimationTickHolder.getPartialTicks());
             Color color = DestroyClient.FOG_HANDLER.getColor(AnimationTickHolder.getPartialTicks());
             event.setRed(color.getRedAsFloat());
             event.setGreen(color.getGreenAsFloat());
