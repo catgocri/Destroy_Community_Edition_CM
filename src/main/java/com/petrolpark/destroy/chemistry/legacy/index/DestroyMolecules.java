@@ -80,6 +80,16 @@ public final class DestroyMolecules {
         .molarHeatCapacity(44.036f)
         .build(),
 
+    ACROLEIN = builder()
+            .id("acrolein")
+        .structure(LegacyMolecularStructure.deserialize("destroy:linear:C=CC=O"))
+            .boilingPoint(52.3f)
+        .density(840.1f)
+            .molarHeatCapacity(55.3f)
+            .tag(Tags.ACUTELY_TOXIC)
+        .tag(Tags.CARCINOGEN)
+            .build(),
+
     ACRYLONITRILE = builder()
         .id("acrylonitrile")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:C=CC#N"))
@@ -213,6 +223,15 @@ public final class DestroyMolecules {
         .structure(LegacyMolecularStructure.atom(LegacyElement.CALCIUM, 2))
         .build(),
 
+    CAPROLACTAM = builder()
+            .id("caprolactam")
+            .structure(LegacyMolecularStructure.deserialize("destroy:benzene:N,,,,,O"))
+            .boilingPoint(270f)
+            .density(1010f)
+            .molarHeatCapacity(79.4f)
+            .tag(Tags.SMELLY)
+            .build(),
+
     CARBON_DIOXIDE = builder()
         .id("carbon_dioxide")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:O=C=O"))
@@ -258,6 +277,7 @@ public final class DestroyMolecules {
         .density(1562.5f) 
         .molarHeatCapacity(33.949f)
         .tag(Tags.ACUTELY_TOXIC)
+            .tag(Tags.BLEACH)
         .tag(Tags.OZONE_DEPLETER)
         .tag(Tags.SMELLY)
         .build(),
@@ -272,6 +292,23 @@ public final class DestroyMolecules {
         )
         .color(0x7FEDCA4A)
         .build(),
+
+    CHLOROACETATE = builder()
+            .id("chloroacetate")
+            .structure(LegacyMolecularStructure.deserialize("destroy:linear:C(Cl)C~(~O^-0.5)O^-0.5"))
+            .tag(Tags.SMELLY)
+            .tag(Tags.SMOG)
+            .build(),
+
+    CHLOROACETIC_ACID = builder()
+            .id("chloroacetic_acid")
+            .structure(LegacyMolecularStructure.deserialize("destroy:linear:C(C(=O)O)Cl"))
+            .boilingPoint(189.3f)
+            .density(1053f)
+            .molarHeatCapacity(123.1f)
+            .tag(Tags.SMELLY)
+            .tag(Tags.SMOG)
+            .build(),
 
     CHLORODIFLUOROMETHANE = builder()
         .id("chlorodifluoromethane")
@@ -403,6 +440,28 @@ public final class DestroyMolecules {
             .addAtom(LegacyElement.NITROGEN, BondType.TRIPLE)
         ).tag(Tags.ACUTELY_TOXIC)
         .build(),
+
+    CYCLOHEXANONE = builder()
+            .id("cyclohexanone")
+            .structure(LegacyMolecularStructure.deserialize("destroy:cyclohexene:O"))
+            .boilingPoint(155.4f)
+            .density(940f)
+            .molarHeatCapacity(152.9f)
+            .tag(Tags.ACUTELY_TOXIC)
+            .tag(Tags.SMELLY)
+            .tag(Tags.SMOG)
+            .build(),
+
+    CYCLOHEXANONE_OXIME = builder()
+            .id("cyclohexanone_oxime")
+            .structure(LegacyMolecularStructure.deserialize("destroy:cyclohexene:NOH"))
+            .boilingPoint(208f)
+            .density(1030f)
+            .molarHeatCapacity(152.9f)
+            .tag(Tags.ACUTELY_TOXIC)
+            .tag(Tags.SMELLY)
+            .tag(Tags.SMOG)
+            .build(),
 
     CYCLOHEXENE = builder()
         .id("cyclohexene")
@@ -660,6 +719,14 @@ public final class DestroyMolecules {
         .translationKey("non_tertiary_borane")
         .build(),
 
+    GLYCERALDEHYDE = builder()
+            .id("glyceraldehyde")
+            .structure(LegacyMolecularStructure.deserialize("destroy:linear:C(C(C=O)O)O"))
+            .boilingPoint(350f)
+            .density(118.5f)
+            .molarHeatCapacity(179.9f)
+            .build(),
+
     GLYCEROL = builder()
         .id("glycerol")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:OCC(O)CO"))
@@ -767,6 +834,15 @@ public final class DestroyMolecules {
         .structure(LegacyMolecularStructure.atom(LegacyElement.HYDROGEN).addAtom(new LegacyAtom(LegacyElement.OXYGEN, -1)))
         .density(900f) // Not accurate but allows separation of mercury and sodium hydroxide solution by Centrifugation
         .build(),
+
+    HYDROXYLAMINE = builder()
+            .id("hydroxylamine")
+            .structure(LegacyMolecularStructure.deserialize("destroy:linear:NO"))
+            .boilingPoint(107f)
+            .density(1227f)
+            .tag(Tags.ACUTELY_TOXIC)
+            .tag(Tags.CARCINOGEN)
+            .build(),
 
     HYPOCHLOROUS_ACID = builder()
         .id("hypochlorous_acid")
@@ -985,6 +1061,19 @@ public final class DestroyMolecules {
             .addAtom(LegacyElement.OXYGEN, BondType.DOUBLE)
         ).build(),
 
+    NITROUS_OXIDE = builder()
+            .id("nitrous_oxide")
+            .structure(LegacyMolecularStructure.atom(LegacyElement.NITROGEN, 1)
+                .addAtom(LegacyElement.OXYGEN, BondType.DOUBLE)
+                .addAtom(new LegacyAtom(LegacyElement.NITROGEN, -1), BondType.DOUBLE)
+            )
+            .boilingPoint(-88.5f)
+            .density(1997f)
+            .molarHeatCapacity(29.12f)
+            .tag(Tags.ACID_RAIN)
+            .tag(Tags.GREENHOUSE)
+            .build(),
+
     OCTASULFUR = builder()
         .id("octasulfur")
         .translationKey("sulfur")
@@ -1101,6 +1190,16 @@ public final class DestroyMolecules {
         .tag(Tags.SMOG)
         .build(),
 
+    PIPERIDONE = builder()
+            .id("piperidone")
+            .structure(LegacyMolecularStructure.deserialize("destroy:benzene:C1CNC,,C,,C1=O"))
+            .color(0x00FF00)
+            .boilingPoint(290f)
+            .density(1540f)
+            .molarHeatCapacity(170f)
+            .tag(Tags.SMOG)
+            .build(),
+
     POTASSIUM_ION = builder()
         .id("potassium_ion")
         .translationKey("potassium")
@@ -1124,6 +1223,14 @@ public final class DestroyMolecules {
         .molarHeatCapacity(159.4f)
         .tag(Tags.SMOG)
         .build(),
+
+    SARCOSINE = builder()
+            .id("sarcosine")
+            .structure(LegacyMolecularStructure.deserialize("destroy:linear:N(C)C(C(=O)O)))"))
+            .boilingPoint(208f)
+            .density(890f)
+            .molarHeatCapacity(128.9f)
+            .build(),
 
     SODIUM_METAL = builder()
         .id("sodium_metal")

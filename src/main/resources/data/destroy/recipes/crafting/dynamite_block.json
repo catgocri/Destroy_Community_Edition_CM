@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DSD",
+    "SDS",
+    "DSD"
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:smelts_to_glass"
+    },
+    "D": {
+      "item": "destroy:dynamite"
+    }
+  },
+  "result": {
+    "item": "destroy:dynamite_block"
+  }
+}

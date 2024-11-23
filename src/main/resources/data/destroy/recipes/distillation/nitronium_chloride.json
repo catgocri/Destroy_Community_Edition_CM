@@ -1,0 +1,53 @@
+{
+  "type": "destroy:distillation",
+  "ingredients": [
+    {
+      "fluid": "minecraft:water",
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "fluid": "destroy:mixture",
+      "amount": 500,
+      "nbt": {
+        "Mixture": {
+          "TranslationKey": "fluid.destroy.brine",
+          "Contents": [
+            {
+              "Molecule": "destroy:water",
+              "Concentration": 32.454
+            },
+            {
+              "Molecule": "destroy:nitronium",
+              "Concentration": 12.276
+            },
+            {
+              "Molecule": "destroy:chloride",
+              "Concentration": 12.276
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fluid": "destroy:mixture",
+      "amount": 500,
+      "nbt": {
+        "Mixture": {
+          "TranslationKey": "fluid.destroy.distilled_water",
+          "Contents": [
+            {
+              "Molecule": "destroy:water",
+              "Concentration": 32.454
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "heatRequirement": "heated",
+  "biomes": [
+    "minecraft:basalt_deltas"
+  ]
+}

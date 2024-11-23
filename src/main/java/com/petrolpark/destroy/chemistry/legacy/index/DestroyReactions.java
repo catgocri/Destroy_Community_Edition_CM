@@ -32,6 +32,14 @@ public class DestroyReactions {
         .activationEnergy(20f)
         .build(),
 
+    ACETIC_ACID_CHLORINATION = builder()
+            .id("acetic_acid_chlorination")
+            .addReactant(DestroyMolecules.ACETIC_ACID)
+            .addReactant(DestroyMolecules.CHLORINE)
+            .addProduct(DestroyMolecules.CHLOROACETIC_ACID)
+            .addProduct(DestroyMolecules.HYDROCHLORIC_ACID)
+            .build(),
+
     ACETYLENE_TRIMERIZATION = builder()
         .id("acetylene_trimerization")
         .addReactant(DestroyMolecules.ACETYLENE, 3)
@@ -105,6 +113,22 @@ public class DestroyReactions {
         .addReactant(DestroyMolecules.ETHENE)
         .addProduct(DestroyMolecules.CYCLOHEXENE)
         .build(),
+
+    BASALT_COMBUSTION = builder()
+            .id("basalt_combustion")
+            .addReactant(DestroyMolecules.OXYGEN)
+            .addSimpleItemCatalyst(() -> Items.BASALT, 100)
+            .addProduct(DestroyMolecules.NITROUS_OXIDE, 10)
+            .addProduct(DestroyMolecules.WATER, 2)
+            .activationEnergy(100f)
+            .build(),
+
+    BECKMANN_REARRANGEMENT = builder()
+            .id("beckman_rearrangement")
+            .addReactant(DestroyMolecules.CYCLOHEXANONE_OXIME)
+            .addCatalyst(DestroyMolecules.SULFURIC_ACID, 0)
+            .addProduct(DestroyMolecules.CAPROLACTAM)
+            .build(),
 
     BENZENE_ETHYLATION = builder()
         .id("benzene_ethylation")
@@ -331,6 +355,14 @@ public class DestroyReactions {
         .withResult(2.99f, PrecipitateReactionResult.of(DestroyBlocks.CORDITE_BLOCK::asStack))
         .build(),
 
+    CREATINE_SYNTHESIS = builder()
+            .id("creatine_synthesis")
+            .addReactant(DestroyMolecules.CYANAMIDE)
+            .addReactant(DestroyMolecules.SARCOSINE)
+            .addCatalyst(DestroyMolecules.HYDROXIDE, 0)
+            .withResult(10f, PrecipitateReactionResult.of(DestroyItems.CREATINE::asStack))
+            .build(),
+
     CROCOITE_DISSOLUTION = builder()
         .id("crocoite_dissolution")
         .addReactant(DestroyMolecules.NITRATE, 0, 1)
@@ -358,6 +390,23 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.CYANAMIDE)
         .addProduct(DestroyMolecules.HYDROXIDE, 2)
         .build(),
+
+    CYCLOHEXANONE_CONDENSATION = builder()
+            .id("cyclohexanone_condensation")
+            .addReactant(DestroyMolecules.CYCLOHEXANONE)
+            .addReactant(DestroyMolecules.HYDROXYLAMINE)
+            .addProduct(DestroyMolecules.CYCLOHEXANONE_OXIME)
+            .addProduct(DestroyMolecules.WATER)
+            .build(),
+
+    CYCLOHEXENE_OXIDATION = builder()
+            .id("cyclohexene_oxidation")
+            .addReactant(DestroyMolecules.CYCLOHEXENE)
+            .addReactant(DestroyMolecules.OXYGEN)
+            .addSimpleItemCatalyst(DestroyItems.ZINC_POWDER::get, 1f)
+            .addProduct(DestroyMolecules.CYCLOHEXANONE)
+            .addProduct(DestroyMolecules.WATER)
+            .build(),
 
     CYCLOHEXENE_OXIDATIVE_CLEAVAGE = builder()
         .id("cyclohexene_oxidative_cleavage")
@@ -478,12 +527,28 @@ public class DestroyReactions {
         .activationEnergy(50f)
         .build(),
 
+    GLYCERALDEHYDE_SYNTHESIS = builder()
+            .id("glyceraldehyde_synthesis")
+        .addReactant(DestroyMolecules.ACROLEIN)
+            .addReactant(DestroyMolecules.HYDROGEN_PEROXIDE)
+            .addProduct(DestroyMolecules.GLYCERALDEHYDE)
+            .activationEnergy(1f)
+            .build(),
+
+    GLYCERRALDEHYDE_HYDROGENATION = builder()
+            .id("glyceraldehyde_hydrogenation")
+             .addReactant(DestroyMolecules.GLYCERALDEHYDE)
+            .addReactant(DestroyMolecules.HYDROGEN)
+            .addProduct(DestroyMolecules.GLYCEROL)
+            .build(),
+
     GLYCEROL_NITRATION = builder()
         .id("glycerol_nitration")
         .addReactant(DestroyMolecules.GLYCEROL)
         .addReactant(DestroyMolecules.NITRONIUM, 3)
         .addProduct(DestroyMolecules.PROTON, 3)
         .addProduct(DestroyMolecules.NITROGLYCERINE)
+            .activationEnergy(2f)
         .build(),
 
     GOLD_DISSOLUTION = builder()
@@ -580,6 +645,15 @@ public class DestroyReactions {
             .preexponentialFactor(6.641220309e3f) // Two Arrhenius constants need to divide to 5.108631007
             .setOrder(DestroyMolecules.WATER, 0)
         ).build(),
+
+    NITRIC_ACID_REDUCTION = builder()
+            .id("nitric_acid_reduction")
+        .addReactant(DestroyMolecules.NITRIC_ACID)
+            .addReactant(DestroyMolecules.HYDROGEN, 3)
+        .addCatalyst(DestroyMolecules.SULFURIC_ACID, 0)
+            .addProduct(DestroyMolecules.HYDROXYLAMINE)
+            .addProduct(DestroyMolecules.WATER, 2)
+    .build(),
 
     HYPOCHLORITE_FORMATION = builder()
         .id("hypochlorite_formation")
@@ -856,6 +930,15 @@ public class DestroyReactions {
         .enthalpyChange(-107.6f)
         .build(),
 
+    PROPENE_CONDENSATION = builder()
+            .id("propene_condensation")
+            .addReactant(DestroyMolecules.PROPENE)
+            .addReactant(DestroyMolecules.OXYGEN)
+            .addProduct(DestroyMolecules.ACROLEIN)
+            .addProduct(DestroyMolecules.WATER)
+            .activationEnergy(75f)
+            .build(),
+
     PROPENE_POLYMERIZATION = builder()
         .id("propene_polymerization")
         .addReactant(DestroyMolecules.PROPENE)
@@ -866,6 +949,25 @@ public class DestroyReactions {
         ).preexponentialFactor(10f)
         .activationEnergy(10f)
         .build(),
+
+    RODRIGUES_ZONETTI_PROCESS = builder()
+            .id("rodrigues_zonetti_process")
+            .addReactant(DestroyMolecules.ETHANOL, 5)
+            .addSimpleItemTagCatalyst(AllTags.forgeItemTag("dusts/chromium"), 1f)
+            .addProduct(DestroyMolecules.ACETONE, 3)
+            .addProduct(DestroyMolecules.CARBON_DIOXIDE)
+            .addProduct(DestroyMolecules.HYDROGEN, 6)
+            .activationEnergy(5f)
+            .build(),
+
+    SARCOSINE_SYNTHESIS = builder()
+            .id("sarcosine_synthesis")
+            .addReactant(DestroyMolecules.CHLOROACETIC_ACID)
+            .addReactant(DestroyMolecules.METHYLAMINE)
+            .addCatalyst(DestroyMolecules.BISULFITE, 0)
+            .addProduct(DestroyMolecules.SARCOSINE)
+            .addProduct(DestroyMolecules.HYDROCHLORIC_ACID)
+            .build(),
 
     SODIUM_AMALGAMIZATION = builder()
         .id("sodium_amalgamization")
@@ -1082,6 +1184,16 @@ public class DestroyReactions {
         .withResult(1f, PrecipitateReactionResult.of(DestroyItems.POLYURETHANE::asStack))
         .build(),
 
+    VAILLANT_PROCESS = builder()
+            .id("vaillant_process")
+            .addReactant(DestroyMolecules.BENZENE)
+            .addReactant(DestroyMolecules.NITROUS_OXIDE)
+            .addSimpleItemCatalyst(DestroyItems.ZEOLITE::get, 1f)
+            .addProduct(DestroyMolecules.PHENOL)
+            .addProduct(DestroyMolecules.NITROGEN)
+            .activationEnergy(25f)
+            .build(),
+
     VINYL_ACETATE_SYNTHESIS = builder()
         .id("vinyl_acetate_synthesis")
         .addReactant(DestroyMolecules.ETHENE, 2, 1)
@@ -1112,6 +1224,7 @@ public class DestroyReactions {
     static {
         builder().acid(DestroyMolecules.ACETIC_ACID, DestroyMolecules.ACETATE, 4.76f);
         builder().acid(DestroyMolecules.AMMONIUM, DestroyMolecules.AMMONIA, 9.25f);
+        builder().acid(DestroyMolecules.CHLOROACETIC_ACID, DestroyMolecules.CHLOROACETATE, 2.87f);
         builder().acid(DestroyMolecules.HYDROCHLORIC_ACID, DestroyMolecules.CHLORIDE, -6.3f);
         builder().acid(DestroyMolecules.HYDROFLUORIC_ACID, DestroyMolecules.FLUORIDE, 3.17f);
         builder().acid(DestroyMolecules.HYDROGEN_CYANIDE, DestroyMolecules.CYANIDE, 9.2f);
