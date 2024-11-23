@@ -2168,5 +2168,7 @@
     "destroy.reaction.propene_condensation": "[destroy:propene] Condensation",
     "destroy.reaction.propene_condensation.description": "Used to make [destroy:acrolein].",
     "destroy.reaction.nitric_acid_reduction": "[destroy:nitric_acid] Reduction",
-    "destroy.reaction.nitric_acid_reduction.description": "The reduction of [destroy:nitric_acid] to create hydroxylamine."
+    "destroy.reaction.nitric_acid_reduction.description": "The reduction of [destroy:nitric_acid] to create hydroxylamine.",
+    "destroy.reaction.glycerol_dehydration": "Glycerol Dehydration",
+    "destroy.reaction.glycerol_dehydration.description": "The decomposition of [destroy:glycerol] by dehydration into [destroy:acrolein]."
 }

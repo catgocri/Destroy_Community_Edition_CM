@@ -542,6 +542,14 @@ public class DestroyReactions {
             .addProduct(DestroyMolecules.GLYCEROL)
             .build(),
 
+    GLYCEROL_DEHYDRATION = builder()
+            .id("glycerol_dehydration")
+        .addReactant(DestroyMolecules.GLYCEROL)
+            .addProduct(DestroyMolecules.ACROLEIN)
+            .addProduct(DestroyMolecules.WATER, 2)
+            .activationEnergy(80f)
+            .build(),
+
     GLYCEROL_NITRATION = builder()
         .id("glycerol_nitration")
         .addReactant(DestroyMolecules.GLYCEROL)
