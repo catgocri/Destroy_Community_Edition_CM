@@ -1074,6 +1074,8 @@
     "destroy.reaction.acetic_acid_chlorination.description": "Chlorination of [destroy:acetic_acid] yielding [destroy:chloroacetic_acid] and [destroy:hydrochloric_acid].",
     "destroy.reaction.acetylene_trimerization": "[destroy:acetylene] Trimerization",
     "destroy.reaction.acetylene_trimerization.description": "The combination of three [destroy:acetylene] {molecules, destroy:molecule} into [destroy:benzene].",
+    "destroy.reaction.acrolein_ammoxidation": "[destroy:acrolein] Ammoxidation",
+    "destroy.reaction.acrolein_ammoxidation.description": "The ammoxidation of [destroy:acrolein] to form [destroy:acrylonitrile] and [destroy:water].",
     "destroy.reaction.acrylonitrile_polymerization": "[destroy:acrylonitrile] Polymerization",
     "destroy.reaction.acrylonitrile_polymerization.description": "The {free-radical, destroy:radical} {addition polymerization, destroy:addition_polymer} of [destroy:acrylonitrile].",
     "destroy.reaction.aibn_synthesis": "[destroy:aibn] Synthesis",

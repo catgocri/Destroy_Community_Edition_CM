@@ -47,6 +47,16 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.BENZENE)
         .build(),
 
+    ACROLEIN_AMMOXIDATION = builder()
+            .id("acrolein_amoxidation")
+            .addReactant(DestroyMolecules.ACROLEIN)
+            .addReactant(DestroyMolecules.AMMONIA)
+            .addReactant(DestroyMolecules.OXYGEN)
+            .addProduct(DestroyMolecules.ACRYLONITRILE)
+            .addProduct(DestroyMolecules.WATER)
+            .activationEnergy(50f)
+            .build(),
+
     ACRYLONITRILE_POLYMERIZATION = builder()
         .id("acrylonitrile_polymerization")
         .addReactant(DestroyMolecules.ACRYLONITRILE)
