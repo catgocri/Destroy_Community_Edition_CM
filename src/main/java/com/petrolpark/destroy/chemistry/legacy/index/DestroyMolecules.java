@@ -350,6 +350,16 @@ public final class DestroyMolecules {
         .tag(Tags.SOLVENT)
         .build(),
 
+    CHLOROMETHANE = builder()
+            .id("chloromethane")
+            .structure(LegacyMolecularStructure.deserialize("destroy:linear:CCl"))
+            .boilingPoint(-23.7f)
+            .density(991.8f)
+            .molarHeatCapacity(40.7f)
+            .tag(Tags.ACUTELY_TOXIC)
+            .tag(Tags.CARCINOGEN)
+            .build(),
+
     CHROMATE = builder()
         .id("chromate")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:O=Cr=(-O^-1)(-O^-1)O"))
