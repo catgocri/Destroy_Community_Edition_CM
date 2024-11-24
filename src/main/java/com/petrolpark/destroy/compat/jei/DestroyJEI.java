@@ -26,6 +26,7 @@ import com.petrolpark.destroy.compat.jei.category.ElectrolysisCategory;
 import com.petrolpark.destroy.compat.jei.category.ElementTankFillingCategory;
 import com.petrolpark.destroy.compat.jei.category.ExtrusionCategory;
 import com.petrolpark.destroy.compat.jei.category.FlameRetardantApplicationCategory;
+import com.petrolpark.destroy.compat.jei.category.FlameRetardantRemovalCategory;
 import com.petrolpark.destroy.compat.jei.category.GenericReactionCategory;
 import com.petrolpark.destroy.compat.jei.category.GlassblowingCategory;
 import com.petrolpark.destroy.compat.jei.category.MixableExplosiveCategory;
@@ -40,6 +41,7 @@ import com.petrolpark.destroy.compat.jei.category.VatMaterialCategory;
 import com.petrolpark.destroy.compat.jei.category.VatMaterialCategory.VatMaterialRecipe;
 import com.petrolpark.destroy.compat.jei.recipemanager.ChemicalSpeciesRecipeManagerPlugin;
 import com.petrolpark.destroy.compat.jei.recipemanager.FireproofingRecipeManagerPlugin;
+import com.petrolpark.destroy.compat.jei.recipemanager.UnfireproofingRecipeManagerPlugin;
 import com.petrolpark.destroy.compat.jei.recipemanager.ItemReverseReactionRecipeManagerPlugin;
 import com.petrolpark.destroy.compat.tfmg.SharedDistillationRecipes;
 import com.petrolpark.destroy.config.DestroyAllConfigs;
@@ -48,25 +50,8 @@ import com.petrolpark.destroy.fluid.DestroyFluids;
 import com.petrolpark.destroy.item.CustomExplosiveMixBlockItem;
 import com.petrolpark.destroy.item.DestroyItems;
 import com.petrolpark.destroy.item.armorMaterial.DestroyArmorMaterials;
-import com.petrolpark.destroy.recipe.AgingRecipe;
-import com.petrolpark.destroy.recipe.ArcFurnaceRecipe;
-import com.petrolpark.destroy.recipe.CentrifugationRecipe;
-import com.petrolpark.destroy.recipe.ChargingRecipe;
-import com.petrolpark.destroy.recipe.DestroyRecipeTypes;
-import com.petrolpark.destroy.recipe.DistillationRecipe;
-import com.petrolpark.destroy.recipe.ElectrolysisRecipe;
-import com.petrolpark.destroy.recipe.ElementTankFillingRecipe;
-import com.petrolpark.destroy.recipe.ExtendedDurationFireworkRocketRecipe;
-import com.petrolpark.destroy.recipe.ExtrusionRecipe;
-import com.petrolpark.destroy.recipe.FlameRetardantApplicationRecipe;
-import com.petrolpark.destroy.recipe.GlassblowingRecipe;
-import com.petrolpark.destroy.recipe.MixtureConversionRecipe;
-import com.petrolpark.destroy.recipe.MutationRecipe;
-import com.petrolpark.destroy.recipe.ObliterationRecipe;
-import com.petrolpark.destroy.recipe.ReactionRecipe;
+import com.petrolpark.destroy.recipe.*;
 import com.petrolpark.destroy.recipe.ReactionRecipe.GenericReactionRecipe;
-import com.petrolpark.destroy.recipe.SievingRecipe;
-import com.petrolpark.destroy.recipe.TappingRecipe;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.compat.jei.category.CreateRecipeCategory;
 import com.simibubi.create.content.processing.basin.BasinRecipe;
@@ -125,6 +110,8 @@ public class DestroyJEI implements IModPlugin {
     private static final List<CreateRecipeCategory<?>> allCategories = new ArrayList<>();
 
     public static CreateRecipeCategory<?> fireproofing;
+
+    public static CreateRecipeCategory<?> unfireproofing;
 
     @SuppressWarnings("unused")
     private void loadCategories() {
@@ -308,6 +295,13 @@ public class DestroyJEI implements IModPlugin {
             .emptyBackground(177, 70)
 			.build("fireproofing", FlameRetardantApplicationCategory::new);
 
+        unfireproofing = builder(FlameRetardantRemovalRecipe.class)
+                .addTypedRecipes(DestroyRecipeTypes.FLAME_RETARDANT_REMOVAL)
+                .doubleItemIcon(AllBlocks.SPOUT::asStack, () -> new ItemStack(DestroyItems.SOAP))
+                .catalyst(AllBlocks.SPOUT::get)
+                .emptyBackground(177, 70)
+                .build("unfireproofing", FlameRetardantRemovalCategory::new);
+
         DestroyJEI.MOLECULE_RECIPES_NEED_PROCESSING = false;
     };
 
@@ -360,6 +354,7 @@ public class DestroyJEI implements IModPlugin {
     public void registerAdvanced(IAdvancedRegistration registration) {
         registration.addRecipeManagerPlugin(new ChemicalSpeciesRecipeManagerPlugin(registration.getJeiHelpers()));
         registration.addRecipeManagerPlugin(new FireproofingRecipeManagerPlugin());
+        registration.addRecipeManagerPlugin(new UnfireproofingRecipeManagerPlugin());
         registration.addRecipeManagerPlugin(new ItemReverseReactionRecipeManagerPlugin());
     };
 

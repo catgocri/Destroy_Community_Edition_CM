@@ -3,7 +3,6 @@ package com.petrolpark.destroy.util;
 import com.petrolpark.destroy.recipe.DestroyRecipeTypes;
 import com.petrolpark.destroy.recipe.SingleFluidRecipe;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
-
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -13,25 +12,25 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
-public class FireproofingHelper {
+public class UnfireproofingHelper {
 
     public static final String IS_APPLIED_TAG = "FlameRetardantApplied";
 
     private static final RecipeWrapper WRAPPER = new RecipeWrapper(new ItemStackHandler());
 
     public static boolean canApply(Level world, ItemStack stack) {
-        return couldApply(world, stack) && DestroyRecipeTypes.FLAME_RETARDANT_APPLICATION.find(WRAPPER, world).isPresent();
+        return couldApply(world, stack) || DestroyRecipeTypes.FLAME_RETARDANT_REMOVAL.find(WRAPPER, world).isEmpty();
     };
 
     public static boolean couldApply(Level world, ItemStack stack) {
-        if (stack.getItem().isFireResistant() || isFireproof(stack)) return false;
+        if (isFireproof(stack)) return true;
         if (stack.getItem() instanceof BlockItem blockItem && !(blockItem.getBlock() instanceof ShulkerBoxBlock)) return false;
-        return true;
+        return false;
     };
 
     public static int getRequiredAmountForItem(Level world, ItemStack stack, FluidStack availableFluid) {
         if (!canApply(world, stack)) return -1;
-        return world.getRecipeManager().getRecipeFor(DestroyRecipeTypes.FLAME_RETARDANT_APPLICATION.getType(), WRAPPER, world).stream()
+        return world.getRecipeManager().getRecipeFor(DestroyRecipeTypes.FLAME_RETARDANT_REMOVAL.getType(), WRAPPER, world).stream()
             .map(r -> (SingleFluidRecipe)r)
             .map(SingleFluidRecipe::getRequiredFluid)
             .filter(i -> i.test(availableFluid))
@@ -42,7 +41,7 @@ public class FireproofingHelper {
 
     public static ItemStack fillItem(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid) {
         if (!canApply(world, stack)) return ItemStack.EMPTY;
-        return world.getRecipeManager().getRecipeFor(DestroyRecipeTypes.FLAME_RETARDANT_APPLICATION.getType(), WRAPPER, world)
+        return world.getRecipeManager().getRecipeFor(DestroyRecipeTypes.FLAME_RETARDANT_REMOVAL.getType(), WRAPPER, world)
             .map(r -> (SingleFluidRecipe)r)
             .filter(r  -> r.getRequiredFluid().test(availableFluid))
             .map(r -> {
@@ -57,9 +56,9 @@ public class FireproofingHelper {
 
     public static void apply(Level world, ItemStack stack) {
         if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock) {
-            stack.getOrCreateTagElement("BlockEntityTag").putBoolean(IS_APPLIED_TAG, true);
+            stack.getOrCreateTagElement("BlockEntityTag").remove(IS_APPLIED_TAG);
         } else {
-            stack.getOrCreateTag().putBoolean(IS_APPLIED_TAG, true);
+            stack.removeTagKey(IS_APPLIED_TAG);
         };
     };
 

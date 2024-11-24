@@ -1,5 +1,6 @@
 package com.petrolpark.destroy.mixin;
 
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -7,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.petrolpark.destroy.util.FireproofingHelper;
+import com.petrolpark.destroy.util.UnfireproofingHelper;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
 
 import net.minecraft.world.item.ItemStack;
@@ -31,6 +33,7 @@ public class GenericItemFillingMixin {
     )
     private static void inCanItemBeFilled(Level world, ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         if (FireproofingHelper.canApply(world, stack)) cir.setReturnValue(true);
+        if (UnfireproofingHelper.canApply(world, stack)) cir.setReturnValue(true);
     };
 
     @Inject(
@@ -41,8 +44,14 @@ public class GenericItemFillingMixin {
     )
     private static void inGetRequiredAmountForItem(Level world, ItemStack stack, FluidStack availableFluid, CallbackInfoReturnable<Integer> cir) {
         if (cir.getReturnValueI() == -1) {
-            int required = FireproofingHelper.getRequiredAmountForItem(world, stack, availableFluid);
-            if (required > 0) cir.setReturnValue(required);
+            if (!FireproofingHelper.isFireproof(stack)) {
+                int required = FireproofingHelper.getRequiredAmountForItem(world, stack, availableFluid);
+                if (required > 0) cir.setReturnValue(required);
+            }
+            else {
+                int required = UnfireproofingHelper.getRequiredAmountForItem(world, stack, availableFluid);
+                if (required > 0) cir.setReturnValue(required);
+            }
         };
     };
 
@@ -57,8 +66,12 @@ public class GenericItemFillingMixin {
         toFill.setAmount(requiredAmount);
         ItemStack single = stack.copy();
         single.setCount(1);
-        if (!(stack.getItem() == Items.GLASS_BOTTLE && canFillGlassBottleInternally(toFill)) && !single.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent()) {
+        if (!(stack.getItem() == Items.GLASS_BOTTLE && canFillGlassBottleInternally(toFill)) && !single.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent() && !FireproofingHelper.isFireproof(stack)) {
             ItemStack result = FireproofingHelper.fillItem(world, requiredAmount, stack, availableFluid);
+            if (!result.isEmpty()) cir.setReturnValue(result);
+        }
+        if (!(stack.getItem() == Items.GLASS_BOTTLE && canFillGlassBottleInternally(toFill)) && !single.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent() && FireproofingHelper.isFireproof(stack)) {
+            ItemStack result = UnfireproofingHelper.fillItem(world, requiredAmount, stack, availableFluid);
             if (!result.isEmpty()) cir.setReturnValue(result);
         };
     };

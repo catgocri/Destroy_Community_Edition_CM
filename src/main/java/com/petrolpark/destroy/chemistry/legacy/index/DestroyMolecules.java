@@ -355,9 +355,10 @@ public final class DestroyMolecules {
             .structure(LegacyMolecularStructure.deserialize("destroy:linear:CCl"))
             .boilingPoint(-23.7f)
             .density(991.8f)
-            .molarHeatCapacity(40.7f)
+            .molarHeatCapacity(140.7f)
             .tag(Tags.ACUTELY_TOXIC)
             .tag(Tags.CARCINOGEN)
+            .tag(Tags.REFRIGERANT)
             .build(),
 
     CHROMATE = builder()

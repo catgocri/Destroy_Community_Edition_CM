@@ -1,0 +1,13 @@
+{
+    "type": "destroy:flame_retardant_removal",
+    "ingredients": [
+      {
+        "mixtureFluidWithTaggedMolecules": "destroy:mixture",
+        "amount": 10,
+        "tag": "destroy:bleach",
+        "min_concentration": 1.0,
+        "max_concentration": 3.0
+      }
+    ],
+    "results": []
+  }
