@@ -48,7 +48,7 @@ public class DestroyReactions {
         .build(),
 
     ACROLEIN_AMMOXIDATION = builder()
-            .id("acrolein_amoxidation")
+            .id("acrolein_ammoxidation")
             .addReactant(DestroyMolecules.ACROLEIN)
             .addReactant(DestroyMolecules.AMMONIA)
             .addReactant(DestroyMolecules.OXYGEN)
@@ -148,6 +148,15 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.ETHYLBENZENE)
         .build(),
 
+    BENZENE_FRIEDEL_CRAFTS_ACYLATION = builder()
+            .id("benzene_friedel_crafts_acylation")
+            .addReactant(DestroyMolecules.BENZENE)
+            .addReactant(DestroyMolecules.CHLOROACETONE)
+            .addSimpleItemCatalyst(DestroyItems.ZEOLITE::get, 1f)
+            .addProduct(DestroyMolecules.PHENYLACETONE)
+            .addProduct(DestroyMolecules.HYDROCHLORIC_ACID)
+            .build(),
+
     BENZENE_HYDROGENATION = builder()
         .id("benzene_hydrogenation")
         .addReactant(DestroyMolecules.BENZENE)
@@ -155,6 +164,17 @@ public class DestroyReactions {
         .addSimpleItemTagCatalyst(AllTags.forgeItemTag("dusts/nickel"), 1f)
         .addProduct(DestroyMolecules.CYCLOHEXENE)
         .build(),
+
+    BERTHOLLET_PROCESS = builder()
+            .id("berthollet_process")
+            .addReactant(DestroyMolecules.HYDROCHLORIC_ACID, 4)
+            .addReactant(DestroyMolecules.OXYGEN)
+            .addSimpleItemTagCatalyst(AllTags.forgeItemTag("dusts/palladium"), 16f)
+            .addProduct(DestroyMolecules.CHLORINE, 2)
+            .addProduct(DestroyMolecules.HYPOCHLOROUS_ACID, 2)
+            .activationEnergy(1f)
+            .preexponentialFactor(10000e7f)
+            .build(),
 
     BORAX_DISSOLUTION = builder()
         .id("borax_dissolution")
@@ -262,6 +282,14 @@ public class DestroyReactions {
         .withResult(2f, PrecipitateReactionResult.of(DestroyItems.NITROCELLULOSE::asStack))
         .build(),
 
+    CHLORIDE_DISPLACEMENT = builder()
+            .id("chloride_displacement")
+        .addReactant(DestroyMolecules.FLUORINE)
+            .addReactant(DestroyMolecules.CHLORIDE, 2)
+            .addProduct(DestroyMolecules.FLUORIDE, 2)
+            .addProduct(DestroyMolecules.CHLORINE)
+            .build(),
+
     CHLORINE_HALOFORM_REACTION = builder()
         .id("chlorine_haloform_reaction")
         .addReactant(DestroyMolecules.HYPOCHLORITE, 3, 0)
@@ -295,6 +323,14 @@ public class DestroyReactions {
         .preexponentialFactor(1e8f)
         .activationEnergy(100f) // This preexponential factor and activation energy should yield decent pyrolysis at around 600K
         .build(),
+
+    CHLOROACETIC_ACID_DECARBOXYLATION = builder()
+            .id("chloroacetic_acid_decarboxylation")
+        .addReactant(DestroyMolecules.CHLOROACETIC_ACID, 2)
+        .addProduct(DestroyMolecules.CHLOROACETONE)
+            .addProduct(DestroyMolecules.CARBON_DIOXIDE, 2)
+            .activationEnergy(120f)
+    .build(),
 
     CHLOROETHENE_POLYMERIZATION = builder()
         .id("chloroethene_polymerization")
@@ -364,6 +400,13 @@ public class DestroyReactions {
         .addSimpleItemReactant(DestroyItems.NITROCELLULOSE::get, 1f)
         .withResult(2.99f, PrecipitateReactionResult.of(DestroyBlocks.CORDITE_BLOCK::asStack))
         .build(),
+
+    CRACK_WHITE_PRECIPITATION = builder()
+            .id("crack_white_precipitation")
+            .addReactant(DestroyMolecules.METHAMPHETAMINE)
+            .addReactant(DestroyMolecules.HYDROCHLORIC_ACID)
+            .withResult(0.9f, PrecipitateReactionResult.of(DestroyItems.CRACK_WHITE_CRYSTAL::asStack))
+            .build(),
 
     CREATINE_SYNTHESIS = builder()
             .id("creatine_synthesis")
@@ -460,6 +503,18 @@ public class DestroyReactions {
         .withResult(10f, PrecipitateReactionResult.of(DestroyItems.CREATINE::asStack))
         .build(),
 
+    DEACON_PROCESS = builder()
+            .id("deacon_process")
+            .addReactant(DestroyMolecules.PROTON, 4)
+            .addReactant(DestroyMolecules.CHLORIDE, 4)
+            .addReactant(DestroyMolecules.OXYGEN)
+            .addCatalyst(DestroyMolecules.COPPER_II, 0)
+            .addProduct(DestroyMolecules.CHLORINE, 2)
+            .addProduct(DestroyMolecules.WATER, 2)
+            .activationEnergy(150f)
+            .preexponentialFactor(1000.0f)
+            .build(),
+
     DIBORANE_HYDROLYSIS = builder()
         .id("diborane_hydrolysis")
         .addReactant(DestroyMolecules.DIBORANE)
@@ -526,6 +581,27 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.HYDROFLUORIC_ACID, 2)
         .build(),
 
+    FLUORINE_GAS_PRODUCTION = builder()
+            .id("fluorine_gas_production")
+            .addReactant(DestroyMolecules.PROTON, 2)
+        .addReactant(DestroyMolecules.FLUORIDE, 2)
+            .addCatalyst(DestroyMolecules.ZINC_ION, 0)
+            .addProduct(DestroyMolecules.FLUORINE)
+            .addProduct(DestroyMolecules.HYDROGEN)
+            .activationEnergy(200f)
+            .preexponentialFactor(100f)
+            .build(),
+
+    FLUORINE_GAS_PRODUCTION_2 = builder()
+            .id("fluorine_gas_production_2")
+            .addReactant(DestroyMolecules.HYDROFLUORIC_ACID, 2)
+            .addCatalyst(DestroyMolecules.ZINC_ION, 0)
+            .addProduct(DestroyMolecules.FLUORINE)
+            .addProduct(DestroyMolecules.HYDROGEN)
+            .activationEnergy(200f)
+            .preexponentialFactor(100f)
+            .build(),
+
     FRANK_CARO_PROCESS = builder()
         .id("frank_caro_process")
         .addSimpleItemReactant(DestroyItems.CALCIUM_CARBIDE, 2f)
@@ -536,6 +612,17 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.CARBON_DIOXIDE) // todo maybe make it make soot instead of including oxygen in the reactants
         .activationEnergy(50f)
         .build(),
+
+    GLAUBER_SYNTHESIS = builder()
+            .id("glauber_synthesis")
+            .addReactant(DestroyMolecules.CHLORIDE)
+            .addReactant(DestroyMolecules.PROTON)
+            .addCatalyst(DestroyMolecules.SODIUM_ION, 0)
+            .addCatalyst(DestroyMolecules.HYDROGENSULFATE, 0)
+            .addProduct(DestroyMolecules.HYDROCHLORIC_ACID)
+            .activationEnergy(10f)
+            .preexponentialFactor(100f)
+            .build(),
 
     GLYCERALDEHYDE_SYNTHESIS = builder()
             .id("glyceraldehyde_synthesis")
@@ -813,14 +900,20 @@ public class DestroyReactions {
         .addProduct(DestroyMolecules.ACETIC_ACID)
         .build(),
 
+    METHAMPHETAMINE_SYNTHESIS = builder()
+            .id("methamphetamine_synthesis")
+            .addReactant(DestroyMolecules.PHENYLACETONE_N_METHYLIMINE)
+            .addReactant(DestroyMolecules.HYDROGEN)
+            .addSimpleItemTagCatalyst(AllTags.forgeItemTag("dusts/platinum"), 1f)
+            .addProduct(DestroyMolecules.METHAMPHETAMINE)
+            .build(),
+
     NAUGHTY_REACTION = builder()
         .id("naughty_reaction")
         .addReactant(DestroyMolecules.PHENYLACETONE)
         .addReactant(DestroyMolecules.METHYLAMINE)
-        .withResult(0f, (m, r) -> new CombinedReactionResult(m, r)
-            .with(ExplosionReactionResult::small)
-            .with(DestroyAdvancementTrigger.TRY_TO_MAKE_METH::asReactionResult)
-        ).dontIncludeInJei()
+            .addProduct(DestroyMolecules.PHENYLACETONE_N_METHYLIMINE)
+            .addProduct(DestroyMolecules.WATER)
         .build(),
 
     NHN_SYNTHESIS = builder()
@@ -982,7 +1075,7 @@ public class DestroyReactions {
             .id("sarcosine_synthesis")
             .addReactant(DestroyMolecules.CHLOROACETIC_ACID)
             .addReactant(DestroyMolecules.METHYLAMINE)
-            .addCatalyst(DestroyMolecules.BISULFITE, 0)
+            .addCatalyst(DestroyMolecules.HYDROGENSULFATE, 0)
             .addProduct(DestroyMolecules.SARCOSINE)
             .addProduct(DestroyMolecules.HYDROCHLORIC_ACID)
             .build(),

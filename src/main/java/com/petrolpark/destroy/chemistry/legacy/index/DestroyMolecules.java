@@ -310,6 +310,13 @@ public final class DestroyMolecules {
             .tag(Tags.SMOG)
             .build(),
 
+    CHLOROACETONE = builder()
+            .id("chloroacetone")
+            .structure(LegacyMolecularStructure.deserialize("destroy:linear:CC(=O)CCl"))
+            .tag(Tags.SMELLY)
+            .tag(Tags.SMOG)
+            .build(),
+
     CHLORODIFLUOROMETHANE = builder()
         .id("chlorodifluoromethane")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:ClC(F)F"))
@@ -358,7 +365,20 @@ public final class DestroyMolecules {
             .molarHeatCapacity(140.7f)
             .tag(Tags.ACUTELY_TOXIC)
             .tag(Tags.CARCINOGEN)
+            .tag(Tags.GREENHOUSE)
+            .tag(Tags.OZONE_DEPLETER)
             .tag(Tags.REFRIGERANT)
+            .build(),
+
+    DICHLOROMETHANE = builder()
+            .id("dichloromethane")
+            .structure(LegacyMolecularStructure.deserialize("destroy:linear:ClC(Cl)"))
+            .boilingPoint(39.6f)
+            .density(1326.6f)
+            .molarHeatCapacity(102.3f)
+            .tag(Tags.ACUTELY_TOXIC)
+            .tag(Tags.CARCINOGEN)
+            .tag(Tags.GREENHOUSE)
             .build(),
 
     CHROMATE = builder()
@@ -589,6 +609,15 @@ public final class DestroyMolecules {
         .id("fluoride")
         .structure(LegacyMolecularStructure.atom(LegacyElement.FLUORINE, -1))
         .build(),
+
+    FLUORINE = builder()
+            .id("fluorine")
+        .structure(LegacyMolecularStructure.deserialize("destroy:linear:FF"))
+            .boilingPoint(-188.11f)
+            .density(1502.07f)
+            .molarHeatCapacity(23.0f)
+            .tag(Tags.ACUTELY_TOXIC)
+            .build(),
 
     GENERIC_ACID_ANHYDRIDE = builder()
         .id("generic_acid_anhydride")
@@ -948,6 +977,15 @@ public final class DestroyMolecules {
         .tag(Tags.SMOG)
         .build(),
 
+    METHAMPHETAMINE = builder()
+            .id("methamphetamine")
+            .structure(LegacyMolecularStructure.deserialize("destroy:benzene:CC(N(H)C)C"))
+            .boilingPoint(212f)
+            .density(1102f)
+            .molarHeatCapacity(250f) // Estimate based on isomers
+            .tag(Tags.ACUTELY_TOXIC)
+            .build(),
+
     METHANE = builder()
         .id("methane")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:C"))
@@ -1100,7 +1138,7 @@ public final class DestroyMolecules {
     OLEUM = builder()
         .id("oleum")
         .structure(LegacyMolecularStructure.deserialize("destroy:linear:HOS(=O)(=O)OS(=O)(=O)OH"))
-        .boilingPoint(10f)
+        .boilingPoint(279.6f) // accidentally used melting point before
         .density(1820f) // Estimate
         .specificHeatCapacity(2600f) // Estimate
         .tag(Tags.ACID_RAIN)
@@ -1169,6 +1207,16 @@ public final class DestroyMolecules {
         .tag(Tags.ACUTELY_TOXIC)
         .tag(Tags.SMOG)
         .build(),
+
+    PHENYLACETONE_N_METHYLIMINE = builder()
+            .id("phenylacetone_n_methylimine")
+            .structure(LegacyMolecularStructure.deserialize("destroy:benzene:CC(=NC)C"))
+            .boilingPoint(201f)
+            .density(1102f)
+            .molarHeatCapacity(250f) // Estimate based on isomers
+            .tag(Tags.ACUTELY_TOXIC)
+            .tag(Tags.SMOG)
+            .build(),
 
     PHOSGENE = builder()
         .id("phosgene")

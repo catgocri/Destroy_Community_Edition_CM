@@ -21,6 +21,8 @@ public class DestroyMobEffects {
         () -> new UncurableMobEffect(MobEffectCategory.NEUTRAL, 0)
     ),
     CHEMICAL_POISON = MOB_EFFECTS.register("chemical_poison", ChemicalPoisonMobEffect::new),
+    CRACK_WHITE_HIGH = MOB_EFFECTS.register("crack_white_high", CrackWhiteHighMobEffect::new),
+    CRACK_WHITE_WITHDRAWAL = MOB_EFFECTS.register("crack_white_withdrawal", CrackWhiteWithdrawalMobEffect::new),
     CRYING = MOB_EFFECTS.register("crying", CryingMobEffect::new),
     FRAGRANCE = MOB_EFFECTS.register("fragrance",
         () -> new DestroyMobEffect(MobEffectCategory.BENEFICIAL, 0xF294D9)

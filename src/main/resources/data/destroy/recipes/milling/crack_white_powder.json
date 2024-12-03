@@ -1,0 +1,14 @@
+{
+    "type": "create:milling",
+    "ingredients": [
+      {
+        "item": "destroy:crack_white_crystal"
+      }
+    ],
+    "results": [
+      {
+        "item": "destroy:crack_white_powder"
+      }
+    ],
+    "processingTime": 100
+  }

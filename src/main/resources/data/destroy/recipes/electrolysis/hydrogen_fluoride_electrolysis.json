@@ -1,0 +1,33 @@
+{
+  "type": "destroy:electrolysis",
+  "ingredients": [
+    {
+      "mixtureFluidWithMolecule": "destroy:mixture",
+      "molecule": "destroy:hydrofluoric_acid",
+      "concentration": 0.042,
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "fluid": "destroy:mixture",
+      "amount": 250,
+      "nbt": {
+        "Mixture": {
+          "TranslationKey": "fluid.destroy.mixture",
+          "Contents": [
+            {
+              "Molecule": "destroy:proton",
+              "Concentration": 50
+            },
+            {
+              "Molecule": "destroy:fluoride",
+              "Concentration": 50
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "processingTime": 200
+}

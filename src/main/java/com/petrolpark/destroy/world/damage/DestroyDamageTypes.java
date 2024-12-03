@@ -18,6 +18,7 @@ public class DestroyDamageTypes {
             CHEMICAL_POISON = key("chemical_poison"),
             HEADACHE = key("headache"),
             BABY_BLUE_OVERDOSE = key("baby_blue_overdose"),
+            CRACK_WHITE_OVERDOSE = key("crack_white_overdose"),
             SELF_NEEDLE = key("self_needle"),
             NEEDLE = key("needle"),
             EXTRUSION_DIE = key("extrusion_die");
@@ -61,6 +62,12 @@ public class DestroyDamageTypes {
         .scaling(DamageScaling.ALWAYS)
         //.tag(DamageTypeTags.BYPASSES_ARMOR)
         .build(), //Bypass armor
+
+    CRACK_WHITE_OVERDOSE = new DamageTypeBuilder(Keys.CRACK_WHITE_OVERDOSE)
+            .exhaustion(0.1f)
+            .scaling(DamageScaling.ALWAYS)
+            //.tag(DamageTypeTags.BYPASSES_ARMOR)
+            .build(), //Bypass armor
 
     SELF_NEEDLE = new DamageTypeBuilder(Keys.SELF_NEEDLE)
         .exhaustion(0.1f)

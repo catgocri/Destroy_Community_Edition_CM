@@ -286,6 +286,13 @@ public class DestroyItems {
         .properties(p -> p
             .food(DestroyFoods.BABY_BLUE_POWDER)
         ).tag(Tags.Items.DUSTS)
+        .register(),
+    CRACK_WHITE_CRYSTAL = REGISTRATE.item("crack_white_crystal", Item::new)
+            .register(),
+    CRACK_WHITE_POWDER = REGISTRATE.item("crack_white_powder", Item::new)
+            .properties(p -> p
+            .food(DestroyFoods.CRACK_WHITE_POWDER)
+            ).tag(Tags.Items.DUSTS)
         .register();
 
     public static final ItemEntry<CarboxylatingItem> QUICKLIME = REGISTRATE.item("quicklime", p -> new CarboxylatingItem(p, CHALK_DUST::asStack, () -> DestroyAllConfigs.SERVER.substances.quicklimeBaseDecayTime))
@@ -694,6 +701,11 @@ public class DestroyItems {
         .tag(DestroyItemTags.SYRINGES.tag)
         .color(() -> () -> (stack, tintIndex) -> tintIndex == 0 ? 8825802 : -1)
         .register(),
+
+    CRACK_WHITE_SYRINGE = REGISTRATE.item("crack_white_syringe", p -> new CrackWhiteSyringeItem(p, 1200, 1))
+            .tag(DestroyItemTags.SYRINGES.tag)
+            .color(() -> () -> (stack, tintIndex) -> tintIndex == 0 ? 14737632 : -1)
+            .register(),
 
     CISPLATIN_SYRINGE = REGISTRATE.item("cisplatin_syringe", CisplatinSyringeItem::new)
         .tag(DestroyItemTags.SYRINGES.tag)

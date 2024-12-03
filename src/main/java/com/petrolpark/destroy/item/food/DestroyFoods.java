@@ -15,6 +15,10 @@ public class DestroyFoods {
         return new MobEffectInstance(DestroyMobEffects.BABY_BLUE_HIGH.get(), 2400, 0);
     };
 
+    public static Supplier<MobEffectInstance> crackWhiteHigh = () -> {
+        return new MobEffectInstance(DestroyMobEffects.CRACK_WHITE_HIGH.get(), 2400, 0);
+    };
+
     // Foods
     public static final FoodProperties
     APPLE_JUICE = new FoodProperties.Builder().nutrition(5).saturationMod(0.4f).effect(() -> new MobEffectInstance(DestroyMobEffects.FULL_BLADDER.get(), 600, 0, false, false, true), 1f).build(),
@@ -28,6 +32,7 @@ public class DestroyFoods {
     POTATE_O = new FoodProperties.Builder().nutrition(2).saturationMod(0.6f).build(),
     BIFURICATED_CARROT = new FoodProperties.Builder().nutrition(6).saturationMod(1.2f).build(),
     BABY_BLUE_POWDER = new FoodProperties.Builder().nutrition(0).saturationMod(0.0f).effect(babyBlueHigh, 1.0f).build(),
+    CRACK_WHITE_POWDER = new FoodProperties.Builder().nutrition(0).saturationMod(0.0f).effect(crackWhiteHigh, 1.0f).build(),
     MOONSHINE = new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).build(),
     BANGERS_AND_MASH = new FoodProperties.Builder().nutrition(8).saturationMod(1.8f).build(),
     RAW_BACON = new FoodProperties.Builder().nutrition(5).saturationMod(1.0f).build(),

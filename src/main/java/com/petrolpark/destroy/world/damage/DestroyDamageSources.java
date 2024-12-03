@@ -33,6 +33,10 @@ public class DestroyDamageSources {
         return source(DestroyDamageTypes.Keys.BABY_BLUE_OVERDOSE, level);
     };
 
+    public static DamageSource crackWhiteOverdose(Level level) {
+        return source(DestroyDamageTypes.Keys.CRACK_WHITE_OVERDOSE, level);
+    };
+
     public static DamageSource selfNeedle(Level level) {
         return source(DestroyDamageTypes.Keys.SELF_NEEDLE, level);
     };
